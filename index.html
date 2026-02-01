@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakesh Pal - Data Scientist & AI Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-bright: #60a5fa;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --surface: #1e293b;
+            --border: #334155;
+            --success: #10b981;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, var(--text) 2px, var(--text) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, var(--text) 2px, var(--text) 4px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles - Modified for top image */
+        header {
+            padding: 2rem 0 3rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-image-container {
+            margin: 0 auto 2rem;
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1s ease 0.4s backwards;
+            border: 3px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .profile-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3));
+            pointer-events: none;
+        }
+        .header-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.1s backwards;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 2rem;
+            color: var(--success);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .availability::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.3s backwards;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-bright);
+        }
+
+        /* Summary Section */
+        .summary {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.8s ease 0.5s backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+        }
+
+        .summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-bright);
+            font-weight: 700;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .experience-badge {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+            border: 1px solid var(--accent);
+        }
+
+        .experience-badge .years {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .experience-badge .label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .summary-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .summary-text strong {
+            color: var(--accent-bright);
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 4rem 0;
+            animation: fadeInUp 0.8s ease backwards;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-category h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-bright);
+            font-weight: 600;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Experience Timeline */
+        .experience-item {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-company {
+            font-size: 1rem;
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+
+        .experience-date {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .experience-description {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-description li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .experience-description li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-bright);
+            font-size: 1.2rem;
+        }
+
+        /* Projects Grid for Detailed Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-2);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-3);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .cert-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cert-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--accent-bright);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cert-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .education-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .education-degree {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-institution {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .education-year {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Achievements */
+        .achievement-item {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--success);
+        }
+
+        .achievement-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-description {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Academic Projects */
+        .project-item {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title-academic {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .project-duration {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+        }
+
+        .project-description-academic {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header, .project-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .background-pattern {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+
+    <div class="container">
+        <!-- Header with Profile Image at Top -->
+        <header>
+            <div class="profile-image-container">
+                <img src="E:\IITM\Resume\Profile\Certificates\rakesh.jpg" alt="Rakesh Pal" class="profile-image">
+            </div>
+            <div class="header-text">
+                <h1>Rakesh Pal</h1>
+                <h2>Data Scientist & ML/AI/Gen_AI Engineer</h2>
+                <div class="availability">Open to Opportunities</div>
+                <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                    Skilled professional specializing in Data Science, Machine Learning, Artificial Intelligence, Deep Learning, and Gen-AI
+                </p>
+                <div class="contact-info">
+                    <a href="tel:+919340349435" class="contact-item">📱 +91-9340349435</a>
+                    <a href="mailto:Rakeshpal.cr78@gmail.com" class="contact-item">✉️ Rakeshpal.cr78@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/rakesh-pal-7191461a3/" target="_blank" class="contact-item">🔗 LinkedIn</a>
+                    <span class="contact-item">📍 Chennai, Tamil Nadu, India</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="summary">
+            <h3>Professional Summary</h3>
+            <div class="summary-grid">
+                <div class="experience-badge">
+                    <span class="years">3+ Years</span>
+                    <span class="label">Total Experience</span>
+                </div>
+                <div class="summary-text">
+                    <strong>Certified Data Scientist</strong> with 3+ years of progressive experience in the IT industry, specializing in <strong>Data Science, AI/ML, Deep Learning, Gen-AI, Computer Vision,NLP, AWS and Statistics </strong> across government, Banking, Agriculture,ETV,Healthcare and Broadcasting sectors. Currently leading AI initiatives at IIT Madras Pravartak, developing enterprise-scale solutions including RAG-powered chatbots, TTS/ASR systems, and agentic AI frameworks.
+                    <br><br>
+                    <strong>Key Expertise:</strong> Designed and deployed 15+ production-grade AI systems including conversational AI agents using <strong> GPT, BERT, and Llama models etc.. </strong> with advanced RAG architectures. Built computer vision solutions achieving 80-85% accuracy in agricultural pest/disease/weed detection using <strong> YOLOv5/v8, ResNet, and U-Net</strong>. Implemented multi-lingual NLP systems with TTS/ASR capabilities for broadcasting and government applications. Proficient in end-to-end ML pipeline development from data collection and annotation to model deployment on <strong>AWS/GCP using FastAPI, Streamlit, and Docker</strong>.
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <!-- Languages & Core -->
+                <div class="skill-category">
+                    <h4>Languages & Core</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag"><strong>Python</strong> (Advanced)</span>
+                        <span class="skill-tag"><strong>SQL</strong></span>
+                        <span class="skill-tag"><strong>Django</strong></span>
+                        <span class="skill-tag"><strong>FastAPI</strong></span>
+                        <span class="skill-tag"><strong>Streamlit</strong></span>
+                        <span class="skill-tag"><strong>Flask</strong></span>
+                    </div>
+                </div>
+
+                <!-- AI/ML & Deep Learning -->
+                <div class="skill-category">
+                    <h4>AI/ML & Deep Learning</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag"><strong>TensorFlow</strong></span>
+                        <span class="skill-tag"><strong>PyTorch</strong></span>
+                        <span class="skill-tag"><strong>Keras</strong></span>
+                        <span class="skill-tag"><strong>Scikit-learn</strong></span>
+                        <span class="skill-tag"><strong>XGBoost</strong></span>
+                        <span class="skill-tag"><strong>OpenCV</strong></span>
+                        <span class="skill-tag"><strong>YOLOv5/v8</strong></span>
+                        <span class="skill-tag"><strong>U-Net</strong></span>
+                        <span class="skill-tag"><strong>ResNet</strong></span>
+                        <span class="skill-tag"><strong>EfficientNet</strong></span>
+                        <span class="skill-tag"><strong>Transfer Learning</strong></span>
+                    </div>
+                </div>
+
+                <!-- Gen-AI & NLP - Detailed Version -->
+                <div class="skill-category">
+                    <h4>Gen-AI & NLP</h4>
+                    <div class="skill-items">
+                        <!-- LLMs -->
+                        <span class="skill-tag"><strong>LLMs</strong>: GPT-3/4, BERT, Llama 2, Mistral</span>
+                        
+                        <!-- Architectures -->
+                        <span class="skill-tag"><strong>Architectures</strong>: Transformers, Attention mechanisms, Encoder-Decoder</span>
+                        
+                        <!-- Frameworks -->
+                        <span class="skill-tag"><strong>Frameworks</strong>: LangChain, LlamaIndex, Hugging Face Transformers, MCP Server</span>
+                        
+                        <!-- RAG -->
+                        <span class="skill-tag"><strong>RAG</strong>: Vector retrieval, Hybrid search, Reranking</span>
+                        
+                        <!-- Embeddings -->
+                        <span class="skill-tag"><strong>Embeddings</strong>: Sentence Transformers, OpenAI</span>
+                        
+                        <!-- NLP -->
+                        <span class="skill-tag"><strong>NLP</strong>: spaCy, NLTK, NER, Sentiment Analysis</span>
+                        
+                        <!-- Conversational AI -->
+                        <span class="skill-tag"><strong>Conversational AI</strong>: RASA, Botkit</span>
+                        
+                        <!-- Speech -->
+                        <span class="skill-tag"><strong>Speech</strong>: Whisper, Wav2Vec 2.0, Tacotron, TTS/ASR</span>
+                        
+                        <!-- Agents -->
+                        <span class="skill-tag"><strong>Agents</strong>: MCP Server, Multi-agent systems, Tool calling</span>
+                    </div>
+                </div>
+
+                <!-- Data & Databases -->
+                <div class="skill-category">
+                    <h4>Data & Databases</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag"><strong>Relational</strong>: SQL Server, PostgreSQL, MySQL</span>
+                        <span class="skill-tag"><strong>Vector DB</strong>: Redis, ChromaDB, Pinecone</span>
+                        <span class="skill-tag"><strong>NoSQL</strong>: MongoDB</span>
+                        <span class="skill-tag"><strong>Big Data</strong>: Apache Spark, Hadoop, MapReduce, Hive</span>
+                        <span class="skill-tag"><strong>ETL/ELT</strong>: Apache Airflow, Kafka, Luigi, Talend</span>
+                        <span class="skill-tag"><strong>Processing</strong>: Pandas, NumPy, Spark SQL, MLlib</span>
+                        <span class="skill-tag"><strong>Annotation</strong>: LabelImg, CVAT</span>
+                        <span class="skill-tag"><strong>Delta Lake</strong></span>
+                    </div>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="skill-category">
+                    <h4>Cloud & DevOps</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag"><strong>AWS</strong>: EC2, S3, Lambda, SageMaker</span>
+                        <span class="skill-tag"><strong>GCP</strong></span>
+                        <span class="skill-tag"><strong>Docker</strong></span>
+                        <span class="skill-tag"><strong>Git</strong></span>
+                        <span class="skill-tag"><strong>MLflow</strong></span>
+                        <span class="skill-tag"><strong>CI/CD</strong>: GitHub Actions, Jenkins</span>
+                    </div>
+                </div>
+
+                <!-- Specialized -->
+                <div class="skill-category">
+                    <h4>Specialized</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag"><strong>OCR</strong>: Tesseract</span>
+                        <span class="skill-tag"><strong>PDF Processing</strong></span>
+                        <span class="skill-tag"><strong>Web Scraping</strong>: BeautifulSoup, Selenium</span>
+                        <span class="skill-tag"><strong>RESTful APIs</strong></span>
+                        <span class="skill-tag"><strong>Tableau</strong></span>
+                        <span class="skill-tag"><strong>Power BI</strong></span>
+                        <span class="skill-tag"><strong>GIS/Geospatial</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies -->
+        <section class="section">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Analytics & Research</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag">Predictive Analytics</span>
+                        <span class="skill-tag">Data Mining</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Market Research</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Business Intelligence</h4>
+                    <div class="skill-items">
+                        <span class="skill-tag">Business Intelligence</span>
+                        <span class="skill-tag">Data Warehousing</span>
+                        <span class="skill-tag">Decision Support Systems</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+
+            <!-- IIT Madras Pravartak -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">AI Engineer</div>
+                        <div class="experience-company">IIT Madras Pravartak</div>
+                    </div>
+                    <div class="experience-date">Feb 2025 – Present</div>
+                </div>
+                <ul class="experience-description">
+                    <li>Developed and deployed conversational AI agents (chatbots, virtual assistants) using LLMs like GPT, BERT, and Llama models from Hugging Face</li>
+                    <li>Implemented RAG pipelines by integrating vector databases (Redis, ChromaDB) with LLMs to enhance factual accuracy</li>
+                    <li>Worked on diverse NLP projects including text summarization, translation, transcription, and sentiment analysis</li>
+                </ul>
+
+                <!-- IIT Madras Projects Grid -->
+                <h4 style="margin-top: 2rem; color: var(--accent-bright); font-size: 1.1rem;">Key Projects:</h4>
+                <div class="projects-grid">
+                    <!-- CAG Chatbot -->
+                    <div class="project-card">
+                        <div class="project-title">CAG Chatbot - Complete RAG Pipeline</div>
+                        <div class="project-description">
+                            Built end-to-end RAG pipeline with PDF parsing, chunking, embeddings, Redis vector DB, hybrid search, and LLM integration. Enables intelligent Q&A from high court documents with factual accuracy.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Llama</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">FastAPI</span>
+                        </div>
+                    </div>
+
+                    <!-- CUB MSME Form Validation -->
+                    <div class="project-card">
+                        <div class="project-title">CUB MSME Form Validation</div>
+                        <div class="project-description">
+                            OCR-based system for automated validation of MSME application forms. Integrated document processing, data extraction, and validation workflows with high accuracy for form processing.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">OCR</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Tesseract</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+
+                    <!-- NACIN Chatbot -->
+                    <div class="project-card">
+                        <div class="project-title">NACIN Multi-lingual Chatbot</div>
+                        <div class="project-description">
+                            Multi-lingual tax and customs assistant supporting multiple Indian languages. Built with intent recognition, contextual dialogue, and personalized responses for complex tax queries.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">BERT</span>
+                            <span class="tech-tag">GPT</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">Multi-lingual NLP</span>
+                        </div>
+                    </div>
+
+                    <!-- TTS Project -->
+                    <div class="project-card">
+                        <div class="project-title">Neural TTS with Voice Cloning</div>
+                        <div class="project-description">
+                            Advanced text-to-speech system with neural voice cloning capabilities. Supports multiple voices, emotional tones, and real-time speech synthesis with human-like quality.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Tacotron</span>
+                            <span class="tech-tag">WaveNet</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Voice Cloning</span>
+                        </div>
+                    </div>
+
+                    <!-- ASR Project -->
+                    <div class="project-card">
+                        <div class="project-title">Automatic Speech Recognition System</div>
+                        <div class="project-description">
+                            Real-time speech recognition system with noise cancellation and speaker diarization. Supports multiple languages and accents with high accuracy transcription.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Whisper</span>
+                            <span class="tech-tag">Wav2Vec</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Noise Cancellation</span>
+                        </div>
+                    </div>
+
+                    <!-- Agentic AI System -->
+                    <div class="project-card">
+                        <div class="project-title">Agentic AI with ReAct Framework</div>
+                        <div class="project-description">
+                            Autonomous AI agent implementing ReAct (Reasoning + Acting) framework. Capable of complex problem-solving, tool usage, and multi-step decision making.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">ReAct</span>
+                            <span class="tech-tag">Autonomous Agents</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">GPT-4</span>
+                        </div>
+                    </div>
+
+                    <!-- ETV Project -->
+                    <div class="project-card">
+                        <div class="project-title">ETV Broadcasting TTS Integration</div>
+                        <div class="project-description">
+                            Broadcasting system integration with TTS for automated news reading and announcements. Real-time text processing and speech synthesis for media broadcasting.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Broadcasting</span>
+                            <span class="tech-tag">TTS</span>
+                            <span class="tech-tag">Real-time</span>
+                            <span class="tech-tag">Media Integration</span>
+                        </div>
+                    </div>
+
+                    <!-- Sansad Project -->
+                    <div class="project-card">
+                        <div class="project-title">Parliament Proceedings ASR</div>
+                        <div class="project-description">
+                            Automatic speech recognition system for parliament proceedings. Speaker identification, multi-lingual support, and real-time transcription for parliamentary sessions.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASR</span>
+                            <span class="tech-tag">Speaker Diarization</span>
+                            <span class="tech-tag">Multi-lingual</span>
+                            <span class="tech-tag">Real-time</span>
+                        </div>
+                    </div>
+
+                    <!-- Advanced RAG -->
+                    <div class="project-card">
+                        <div class="project-title">Production-Grade RAG System</div>
+                        <div class="project-description">
+                            Scalable RAG implementation with caching, load balancing, and monitoring. Production-ready system supporting millions of documents with sub-second response times.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NIC Raipur -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">AI Engineer</div>
+                        <div class="experience-company">NIC Raipur</div>
+                    </div>
+                    <div class="experience-date">Sept 2022 – Oct 2024</div>
+                </div>
+                <ul class="experience-description">
+                    <li>Contributed to object detection and classification models to optimize agricultural processes and improve crop yield</li>
+                    <li>Worked on object detection, segmentation, and classification models for agriculture using advanced deep learning techniques</li>
+                    <li>Managed SQL Server database administration and optimization with security measures</li>
+                    <li>Led agricultural implement management platform development</li>
+                </ul>
+
+                <!-- NIC Raipur Projects Grid -->
+                <h4 style="margin-top: 2rem; color: var(--accent-bright); font-size: 1.1rem;">Key Projects:</h4>
+                <div class="projects-grid">
+                    <!-- Pest Detection -->
+                    <div class="project-card">
+                        <div class="project-title">Pest Detection in Paddy</div>
+                        <div class="project-description">
+                            YOLOv8-based real-time pest detection system for paddy fields. Detects multiple pest types with high accuracy, enabling early intervention and reducing crop damage.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">YOLOv8</span>
+                            <span class="tech-tag">Real-time</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">PyTorch</span>
+                        </div>
+                    </div>
+
+                    <!-- Disease Detection -->
+                    <div class="project-card">
+                        <div class="project-title">Disease Detection in Paddy</div>
+                        <div class="project-description">
+                            Multi-class disease classification using ResNet/EfficientNet models. Identifies 15+ paddy diseases from leaf images with 95%+ accuracy, aiding farmers in timely treatment.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">ResNet</span>
+                            <span class="tech-tag">EfficientNet</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Image Classification</span>
+                        </div>
+                    </div>
+
+                    <!-- Weed Detection -->
+                    <div class="project-card">
+                        <div class="project-title">Weed Detection in Paddy</div>
+                        <div class="project-description">
+                            Hybrid YOLOv5 + U-Net segmentation system for precise weed detection and localization. Enables targeted weed removal and reduces herbicide usage by 60%.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">YOLOv5</span>
+                            <span class="tech-tag">U-Net</span>
+                            <span class="tech-tag">Segmentation</span>
+                            <span class="tech-tag">Computer Vision</span>
+                        </div>
+                    </div>
+
+                    <!-- Rule-Based Chatbot -->
+                    <div class="project-card">
+                        <div class="project-title">PostgreSQL-Powered Farmer Assistant</div>
+                        <div class="project-description">
+                            Rule-based chatbot integrated with agricultural database. Provides instant guidance on crop management, weather, market prices, and government schemes.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Rule-based AI</span>
+                            <span class="tech-tag">WebSocket</span>
+                            <span class="tech-tag">Django</span>
+                        </div>
+                    </div>
+
+                    <!-- Attendance System -->
+                    <div class="project-card">
+                        <div class="project-title">Facial Recognition Attendance System</div>
+                        <div class="project-description">
+                            Employee attendance system with facial recognition and anti-spoofing measures. Real-time face detection, liveness detection, and accurate attendance logging.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Face Recognition</span>
+                            <span class="tech-tag">Anti-spoofing</span>
+                            <span class="tech-tag">Real-time</span>
+                            <span class="tech-tag">OpenCV</span>
+                        </div>
+                    </div>
+
+                    <!-- Machine Implement Management -->
+                    <div class="project-card">
+                        <div class="project-title">Agricultural Implement Rental Platform</div>
+                        <div class="project-description">
+                            Full-stack platform for farmers to rent/exchange agricultural machinery. Features include booking system, payment integration, GPS tracking, and maintenance scheduling.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Payment Gateway</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Application Developer</div>
+                        <div class="experience-company">Augtech NextWealth IT Service Pvt Ltd, Bhilai</div>
+                    </div>
+                    <div class="experience-date">Feb 2022 – July 2022</div>
+                </div>
+                <ul class="experience-description">
+                    <li>Developed websites using Python with Django framework</li>
+                    <li>Implemented web scraping solutions using BeautifulSoup and Selenium</li>
+                    <li>Created chatbots for multiple platforms including Facebook, LinkedIn, and WhatsApp using APIs</li>
+                    <li>Tested APIs through Postman and integrated them into code nodes</li>
+                    <li>Built chatbots using RASA and Botkit frameworks</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Academic Projects -->
+        <section class="section">
+            <h2 class="section-title">Academic Projects</h2>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title-academic">Prediction of Breast Cancer Using Machine Learning</div>
+                    <div class="project-duration">122 Days</div>
+                </div>
+                <p class="project-description-academic">
+                    Developed multiple classifiers including logistic regression for forecasting breast cancer with insights predictions. Explored various data mining approaches utilizing classification to produce in-depth predictions on breast cancer data. Identified optimal model with high efficiency by accessing datasets across diverse classifiers. Utilized UCI machine learning repository with 699 instances and 11 attributes from breast cancer dataset.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title-academic">HR Management System</div>
+                    <div class="project-duration">426 Days</div>
+                </div>
+                <p class="project-description-academic">
+                    Developed comprehensive system for maintaining employee records and performing all CRUD operations for efficient human resource management.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title-academic">Smart Automatic Toilet Cleaning System</div>
+                    <div class="project-duration">120 Days</div>
+                </div>
+                <p class="project-description-academic">
+                    Created fully automated toilet cleaning system for railway and residential use. Implemented cleaning of toilet seat, walls, and floor using pressurized water and cleaning fluid with automatic drying. Integrated human presence detection to initiate cleaning process automatically.
+                </p>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="section">
+            <h2 class="section-title">Achievements</h2>
+            <div class="cert-grid">
+                <!-- Achievement 1 -->
+                <div class="cert-item">
+                    <h4>National eGovernance Award 2023 (Gold)</h4>
+                    <a href="Certificates/Achievement/Egovernance_award.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="cert-item">
+                    <h4>Research Paper - Breast Cancer</h4>
+                    <a href="Certificates/Achievement/Research_paper_Breast_cancer.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="cert-item">
+                    <h4>BIT Research - Breast Cancer</h4>
+                    <a href="Certificates/Achievement/BIT_Research_Breast_cancer.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="cert-item">
+                    <h4>Mapathon</h4>
+                    <a href="Certificates/Achievement/Mapathon.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 5 -->
+                <div class="cert-item">
+                    <h4>ML Board Game Predictor</h4>
+                    <a href="Certificates/Achievement/certificate-build-a-board-game-predictor-using-machine-learning.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 6 -->
+                <div class="cert-item">
+                    <h4>Paper Presentation - Wave Optics</h4>
+                    <a href="Certificates/Achievement/paper_presentation_wave_optics.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Achievement 7 -->
+                <div class="cert-item">
+                    <h4>NSS Certificate Type B</h4>
+                    <a href="Certificates/Achievement/Nss_B_certificate.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <!-- Certificate 1 -->
+                <div class="cert-item">
+                    <h4>Alison - Diploma in ML</h4>
+                    <a href="Certificates/certificate/Allison_Diploma_in_ML.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="cert-item">
+                    <h4>360DigiTMG - Data Science Python</h4>
+                    <a href="Certificates/certificate/360digitmg_DS_python.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="cert-item">
+                    <h4>Python for Data Science</h4>
+                    <a href="Certificates/certificate/python_for_data_science.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 4 -->
+                <div class="cert-item">
+                    <h4>Oracle SQL</h4>
+                    <a href="Certificates/certificate/Oracle_sql.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 5 -->
+                <div class="cert-item">
+                    <h4>Udemy - ML with Python</h4>
+                    <a href="Certificates/certificate/udemy_ML_with_python.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 6 -->
+                <div class="cert-item">
+                    <h4>Python Django</h4>
+                    <a href="Certificates/certificate/Python_Django.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 7 -->
+                <div class="cert-item">
+                    <h4>Coursera Python</h4>
+                    <a href="Certificates/certificate/Coursera_python.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 8 -->
+                <div class="cert-item">
+                    <h4>Machine Learning with Python</h4>
+                    <a href="Certificates/certificate/ML_python.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 9 -->
+                <div class="cert-item">
+                    <h4>Machine Learning & Data Science</h4>
+                    <a href="Certificates/certificate/ML_DS.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 10 -->
+                <div class="cert-item">
+                    <h4>ISRO - Remote Sensing & Global Navigation</h4>
+                    <a href="Certificates/certificate/Isro_remote_sensing_global_navigation.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 11 -->
+                <div class="cert-item">
+                    <h4>Geospatial Master Plan</h4>
+                    <a href="Certificates/certificate/Geospatial_Inputs_for_Enabling_Master_Plan.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 12 -->
+                <div class="cert-item">
+                    <h4>Remote Sensing in Agriculture</h4>
+                    <a href="Certificates/certificate/Remote_Sensing_Applications_in_Agricultural_Water_Management.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 13 -->
+                <div class="cert-item">
+                    <h4>ISRO - Coastal Ocean Process</h4>
+                    <a href="Certificates/certificate/Isro_costal_ocean_process.pdf" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+
+                <!-- Certificate 14 -->
+                <div class="cert-item">
+                    <h4>NPTEL English</h4>
+                    <a href="Certificates/certificate/NPTEL_english.jpg" target="_blank" class="cert-link">View Certificate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-degree">M.Tech. in Data Science</div>
+                    <div class="education-institution">BITS Pilani, Hyderabad</div>
+                    <div class="education-year">2024</div>
+                </div>
+                <div class="education-card">
+                    <div class="education-degree">B.Tech. in Computer Science</div>
+                    <div class="education-institution">Bhilai Institute of Technology, Raipur</div>
+                    <div class="education-year">2021</div>
+                </div>
+                <div class="education-card">
+                    <div class="education-degree">XII (Senior Secondary)</div>
+                    <div class="education-institution">Gandhi Memorial Senior Secondary School</div>
+                    <div class="education-year">2017</div>
+                </div>
+                <div class="education-card">
+                    <div class="education-degree">X (High School)</div>
+                    <div class="education-institution">Gandhi Memorial Senior Secondary School</div>
+                    <div class="education-year">2015</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Rakesh Pal. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Last Updated: January 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+
+            // Add animation for project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                card.style.transitionDelay = `${index * 0.05}s`;
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + index * 50);
+            });
+        });
+
+        // Add print functionality
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>
